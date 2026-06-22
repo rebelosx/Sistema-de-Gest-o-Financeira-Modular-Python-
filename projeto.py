@@ -7,9 +7,17 @@ def adicionar_receita():
     print("\n--- Cadastro de Receita ---")
     nome = input("Digite a descricao (ex: Salario): ")
     valor = float(input("Digite o valor: R$"))
-
+    data = input("Data (dd/mm/aaaa): ")
+    categoria = input("Categoria (Ex:Renda extra, Bônus): ")
+    status = input("Status (Recebido/Pendente): ")
     #3 Cria o "Pacote de dados (dicionario)"
-    nova_receita = {"Descrição": nome, "Valor R$": valor}
+    nova_receita = {
+        "Descrição": nome, 
+        "Valor R$": valor,
+        "Data": data,
+        "Categoria": categoria,
+        "Status": status
+        }
 
     #4 Guarda o pacote na lista
     lista_receitas.append(nova_receita)
@@ -19,8 +27,17 @@ def adicionar_despesa():
     print("\n--- Cadastro de Despesa ---")
     nome = input("Digite a descricao (ex: Compras): ")
     valor = float(input("Digite o valor: R$"))
+    data = input("Data (dd/mm/aaaa): ")
+    categoria = input("Categoria (ex: Moradia, Alimentação): ")
+    status = input("Status (Pago/Pendente): ")
 
-    nova_despesa = {"Descrição": nome, "Valor R$": valor}
+    nova_despesa = {
+        "Descrição": nome, 
+        "Valor R$": valor,
+        "Data": data,
+        "Categoria": categoria,
+        "Status": status
+        }
 
     lista_despesas.append(nova_despesa)
     print(f"Receita'{nome}' guardada com sucesso!")
