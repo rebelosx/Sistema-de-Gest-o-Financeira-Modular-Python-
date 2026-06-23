@@ -1,20 +1,34 @@
 {
     "receitas": [
         {
-            "descricao": "salario",
-            "valor": 1598.0,
-            "data": "15012008",
+            "descricao": "Salario",
+            "valor": 1578.0,
+            "data": "15/01/2008",
             "categoria": "renda",
-            "status": "recebido"
+            "status": "Recebido"
+        },
+        {
+            "descricao": "Teste",
+            "valor": 450.0,
+            "data": "15/01/2008",
+            "categoria": "bonus",
+            "status": "pendente"
         }
     ],
     "despesas": [
         {
-            "descricao": "cartao",
-            "valor": 159.0,
-            "data": "15012008",
-            "categoria": "tech",
-            "status": "pago"
+            "descricao": "Cartão",
+            "valor": 340.0,
+            "data": "15/01/2008",
+            "categoria": "Compras",
+            "status": "Pago"
+        },
+        {
+            "descricao": "shopping",
+            "valor": 200.0,
+            "data": "15/01/2008",
+            "categoria": "Compras",
+            "status": "Pago"
         }
     ]
 }
