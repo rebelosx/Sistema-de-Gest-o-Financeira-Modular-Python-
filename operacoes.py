@@ -3,8 +3,24 @@ import os # Para verificar se o arquivo já existe
 
 #1 lista global para guardar tudo
 lista_receitas = []
-lista_despesas = []
+lista_despesas = [] #lista dicionarios, ele estica e adiciona mais uma.
+limites_categorias = {} #Já esse ele pega o valor e substui e carrega do JSON.
 
+def configurar_limites():
+    print("\n--- CONFIGURAÇÃO DE LIMITES ---")
+    categoria = input("Digite a categoria (ex: lazer, compras): ").lower()
+    
+    while True:
+        try:
+            valor_limite = float(input(f"Defina o limite mensal para {categoria}: R$ "))
+            break
+        except ValueError:
+            print("❌ Erro: Digite um valor numérico válido!")
+    
+    # Atualiza o dicionário de limites
+    limites_categorias[categoria] = valor_limite
+    salvar_dados() # Salva a nova configuração no disco
+    print(f"✅ Limite de R$ {valor_limite:.2f} definido para '{categoria}'!")
 
 #2 funcao fora do while
 def adicionar_receita():
@@ -60,6 +76,16 @@ def adicionar_despesa():
         }
 
     lista_despesas.append(nova_despesa)
+     # Lógica de aviso de orçamento
+    categoria_atual = categoria.lower()
+    if categoria_atual in limites_categorias:
+        # Somamos tudo o que já gastamos nessa categoria específica
+        total_gasto = sum(d['valor'] for d in lista_despesas if d['categoria'].lower() == categoria_atual)
+        limite = limites_categorias[categoria_atual]
+
+        if total_gasto > limite:
+            print(f"\n⚠️ ATENÇÃO: Você ultrapassou o limite de {categoria_atual}!")
+            print(f"Limite: R$ {limite:.2f} | Gasto Atual: R$ {total_gasto:.2f}")
     salvar_dados()#salva os dados no pc
     print(f"Receita'{nome}' guardada com sucesso!")
 
@@ -80,12 +106,16 @@ def carregar_dados():#funcao para puxar os dados já salvos.
             # Atualiza as listas globais com o que estava salvo
             lista_receitas.extend(dados.get("receitas", []))
             lista_despesas.extend(dados.get("despesas", []))
+            # 2. Carrega os limites (usando .update para dicionários)
+            # O segundo parâmetro {} garante que, se não houver limites salvos, ele não dê erro
+            limites_categorias.update(dados.get("limites", {}))
         print("\n✅ Dados carregados do disco!")
 
 def salvar_dados():#funcao para salvar os dados dos clientes.
     dados = {
         "receitas": lista_receitas,
-        "despesas": lista_despesas
+        "despesas": lista_despesas,
+        "limites": limites_categorias
     }
     with open("dados_financeiros.json", "w", encoding="utf-8") as arquivo:
         json.dump(dados, arquivo, indent=4, ensure_ascii=False)

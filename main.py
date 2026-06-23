@@ -11,9 +11,10 @@ while True:
     print("3 - Ver Extrato Detalhado")
     print("4 - Ver Balanço Geral (Dashboard)")
     print("5 - LIMPAR TODOS OS DADOS")
+    print("6 - CONFIGURAR LIMITES POR CATEGORIA")
     print("sair - Encerrar")
     
-    opcao = input("\nEscolha uma opção: ")
+    opcao = input("\nEscolha uma opção: ").lower().strip() # .lower transforma tudo em minusculo e.strip() remove espaços extras
 
     if opcao == "1":
         adicionar_receita()
@@ -41,6 +42,8 @@ while True:
         exibir_geral()
     elif opcao == "5":
         limpar_dados() # Chama funcao de reset
+    elif opcao == "6":
+        configurar_limites()
     elif opcao == "sair":
         print("Saindo do sistema. Até logo!")
         break
