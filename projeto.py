@@ -1,3 +1,6 @@
+import json
+import os # Para verificar se o arquivo já existe
+
 #1 lista global para guardar tudo
 lista_receitas = []
 lista_despesas = []
@@ -6,14 +9,20 @@ lista_despesas = []
 def adicionar_receita():
     print("\n--- Cadastro de Receita ---")
     nome = input("Digite a descricao (ex: Salario): ")
-    valor = float(input("Digite o valor: R$"))
+    while True:
+        try:
+            valor = float(input("Valor: R$ "))
+            break 
+        except ValueError:
+            print("❌ Erro: Digite apenas números (use ponto para centavos)!")
+
     data = input("Data (dd/mm/aaaa): ")
     categoria = input("Categoria (Ex:Renda extra, Bônus): ")
     status = input("Status (Recebido/Pendente): ")
     #3 Cria o "Pacote de dados (dicionario)"
     nova_receita = {
         "Descrição": nome, 
-        "Valor R$": valor,
+        "Valor": valor,
         "Data": data,
         "Categoria": categoria,
         "Status": status
@@ -21,25 +30,36 @@ def adicionar_receita():
 
     #4 Guarda o pacote na lista
     lista_receitas.append(nova_receita)
+    salvar_dados()#salva os dados no pc
     print(f"Receita '{nome}' guardada com sucesso!")
 
 def adicionar_despesa():
     print("\n--- Cadastro de Despesa ---")
     nome = input("Digite a descricao (ex: Compras): ")
-    valor = float(input("Digite o valor: R$"))
+    # loop que só para quando o valor for válido
+    while True:
+        try:
+            valor = float(input("Valor: R$ "))
+            break  # Se chegou aqui sem erro, sai do loop do 'valor' e segue a função
+        except ValueError:
+            print("❌ Erro: Digite apenas números (use ponto para centavos)!")
+            # Como não tem 'return' aqui, ele volta para o início do 'while True'
+    
+    # Após o loop garantir um valor correto, o restante da função continua...
     data = input("Data (dd/mm/aaaa): ")
     categoria = input("Categoria (ex: Moradia, Alimentação): ")
     status = input("Status (Pago/Pendente): ")
 
     nova_despesa = {
         "Descrição": nome, 
-        "Valor R$": valor,
+        "Valor": valor,
         "Data": data,
         "Categoria": categoria,
         "Status": status
         }
 
     lista_despesas.append(nova_despesa)
+    salvar_dados()#salva os dados no pc
     print(f"Receita'{nome}' guardada com sucesso!")
 
 def exibir_geral():
@@ -52,8 +72,29 @@ def exibir_geral():
     print(f"Total de Saídas:   R${total_despesas:.2f}")
     print(f"Saldo em Conta:    R${saldo:.2f}")
 
+def carregar_dados():#funcao para puxar os dados já salvos.
+    if os.path.exists("dados_financeiros.json"):
+        with open("dados_financeiros.json", "r", encoding="utf-8") as arquivo:
+            dados = json.load(arquivo)
+            # Atualiza as listas globais com o que estava salvo
+            lista_receitas.extend(dados.get("receitas", []))
+            lista_despesas.extend(dados.get("despesas", []))
+        print("\n✅ Dados carregados do disco!")
+
+def salvar_dados():#funcao para salvar os dados dos clientes.
+    dados = {
+        "receitas": lista_receitas,
+        "despesas": lista_despesas
+    }
+    with open("dados_financeiros.json", "w", encoding="utf-8") as arquivo:
+        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+    print("\n💾 Dados salvos com sucesso no arquivo!")
+
+carregar_dados() #carrega os dados, já salvos!
+
 #loop do menu
 while True:
+
     print("\n--- SISTEMA FINANCEIRO ---")
     print("1 - Adicionar Receita")
     print("2 - Ver todas as Receitas")

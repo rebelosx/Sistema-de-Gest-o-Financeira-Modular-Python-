@@ -1,0 +1,12 @@
+{
+    "receitas": [
+        {
+            "Descrição": "1500",
+            "Valor": 1540.0,
+            "Data": "15",
+            "Categoria": "renda",
+            "Status": "recebido"
+        }
+    ],
+    "despesas": []
+}
