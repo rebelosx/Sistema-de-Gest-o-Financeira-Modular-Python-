@@ -29,18 +29,14 @@ dados_financeiros.json: Base de dados local do sistema
 .gitignore: Configurado para manter o repositório limpo, ignorando arquivos de cache como __pycache__
 .
 📸 Demonstração do Terminal
-Menu Principal
-
+### Menu Principal
 ![Menu Principal](menu.png)
-
-Exibição de Extrato Detalhado
-
+---
+### Exibição de Extrato Detalhado
 ![Exibição de Extrato](extrato.png)
-
-Alerta de Limite Ultrapassado
-
+---
+### Alerta de Limite Ultrapassado
 ![Alerta de Limite Ultrapassado](limite.png)
- 
  Minha Participação Específica
 Como responsável pela lógica central e back-end, minhas principais contribuições técnicas foram:
 Desenvolvimento da Arquitetura de Dados: Estruturei o fluxo de informações utilizando listas e dicionários integrados a um arquivo JSON para garantir a persistência dos dados
