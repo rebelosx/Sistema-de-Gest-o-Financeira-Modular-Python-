@@ -5,11 +5,11 @@ Este é um protótipo funcional de um software para gerenciamento de finanças p
 ##  Funcionalidades
 
 *   **Controle de Transações:** Cadastro detalhado de receitas e despesas com descrição, valor, data, categoria e status.
-*   **Dashboard em Tempo Real:** Cálculo automático de saldo total, somatório de receitas e somatório de despesas [Conversa Anterior].
-*   **Persistência em JSON:** Todos os dados são gravados no arquivo `dados_financeiros.json`, permitindo fechar e abrir o programa sem perder informações [Conversa Anterior, 1812].
-*   **Gestão Orçamentária:** Sistema de configuração de limites por categoria. O software emite alertas caso um gasto ultrapasse o teto definido pelo usuário [Conversa Anterior].
-*   **Validação de Entradas:** Uso de blocos `try-except` para garantir que o sistema não trave caso o usuário digite valores inválidos (como letras em campos de valor) [Conversa Anterior, 1809].
-*   **Extrato Formatado:** Visualização organizada das movimentações com separadores visuais para melhor experiência do usuário (UX) [Conversa Anterior].
+*   **Dashboard em Tempo Real:** Cálculo automático de saldo total, somatório de receitas e somatório de despesas.
+*   **Persistência em JSON:** Todos os dados são gravados no arquivo `dados_financeiros.json`, permitindo fechar e abrir o programa sem perder informações.
+*   **Gestão Orçamentária:** Sistema de configuração de limites por categoria. O software emite alertas caso um gasto ultrapasse o teto definido pelo usuário.
+*   **Validação de Entradas:** Uso de blocos `try-except` para garantir que o sistema não trave caso o usuário digite valores inválidos (como letras em campos de valor).
+*   **Extrato Formatado:** Visualização organizada das movimentações com separadores visuais para melhor experiência do usuário (UX).
 
 ##  Tecnologias Utilizadas
 
@@ -21,10 +21,10 @@ Este é um protótipo funcional de um software para gerenciamento de finanças p
 
 O código segue padrões profissionais de **modularização**:
 
-*   `main.py`: Ponto de entrada do sistema, contendo a lógica do menu interativo e interface com o usuário [1].
-*   `operacoes.py`: Módulo que concentra a lógica de negócio, funções de cálculo e manipulação do arquivo JSON [Conversa Anterior].
+*   `main.py`: Ponto de entrada do sistema, contendo a lógica do menu interativo e interface com o usuário.
+*   `operacoes.py`: Módulo que concentra a lógica de negócio, funções de cálculo e manipulação do arquivo JSON.
 *   `dados_financeiros.json`: Base de dados local do sistema.
-*   `.gitignore`: Configurado para ignorar arquivos de cache como `__pycache__`, mantendo o repositório limpo [Conversa Anterior].
+*   `.gitignore`: Configurado para ignorar arquivos de cache como `__pycache__`, mantendo o repositório limpo.
 
 ---
 
